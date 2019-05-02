@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">AttendanceApp</string>
+
+    <string-array name="roles">
+        <item>student</item>
+        <item>admin</item>
+    </string-array>
+</resources>
