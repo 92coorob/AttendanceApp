@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -16,16 +17,7 @@ import com.google.firebase.database.ValueEventListener;
 
 public class AttendanceAdmin extends AppCompatActivity {
 
-    private Button week1;
-    private Button week2;
-    private Button week3;
-    private Button week4;
-    private Button week5;
-    private Button week6;
-    private Button week7;
-    private Button week8;
-    private Button week9;
-    private Button week10;
+    private Button week1,week2,week3,week4,week5,week6,week7,week8,week9,week10,delete;
     private DatabaseReference usersRef, myRef;
     String name;
     String year;
@@ -61,8 +53,17 @@ public class AttendanceAdmin extends AppCompatActivity {
         week8 = findViewById(R.id.btn_week8);
         week9 = findViewById(R.id.btn_week9);
         week10 = findViewById(R.id.btn_week10);
+        delete = findViewById(R.id.btn_delete);
 
         usersRef = myRef.child("Date");
+
+        delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent goToMain = new Intent(AttendanceAdmin.this, PopPassword.class);
+                startActivity(goToMain);
+            }
+        });
 
         myRef.child("Date").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override

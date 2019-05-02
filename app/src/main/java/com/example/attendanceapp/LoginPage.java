@@ -50,6 +50,7 @@ public class LoginPage extends AppCompatActivity implements View.OnClickListener
 
 
         edtUser = (EditText) findViewById(R.id.username);
+
         edtPw = (EditText) findViewById(R.id.password);
 
         database = FirebaseDatabase.getInstance();
@@ -60,7 +61,7 @@ public class LoginPage extends AppCompatActivity implements View.OnClickListener
             public boolean onKey(View v, int keyCode, KeyEvent event) {
                 if((event.getAction() == KeyEvent.ACTION_DOWN)
                         && (keyCode == KeyEvent.KEYCODE_ENTER)){
-                    signIn(edtUser.getText().toString(),
+                    signIn(edtUser.getText().toString().toLowerCase(),
                             edtPw.getText().toString());
                 }
                 return false;
@@ -74,7 +75,7 @@ public class LoginPage extends AppCompatActivity implements View.OnClickListener
         switch (v.getId()) {
 
             case R.id.login_btn:
-                signIn(edtUser.getText().toString(),
+                signIn(edtUser.getText().toString().toLowerCase(),
                         edtPw.getText().toString());
                 break;
 

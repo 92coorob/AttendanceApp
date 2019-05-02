@@ -57,7 +57,7 @@ public class CreateRecord extends AppCompatActivity implements View.OnClickListe
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.add_btn:
-                username = add_user.getText().toString();
+                username = add_user.getText().toString().toLowerCase();
                 pass = add_pass.getText().toString();
                 role = status.getSelectedItem().toString();
 

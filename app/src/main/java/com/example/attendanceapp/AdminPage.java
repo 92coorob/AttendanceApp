@@ -9,7 +9,7 @@ import android.widget.Button;
 
 public class AdminPage extends AppCompatActivity {
 
-    CardView add_record, check_record;
+    CardView add_record, check_record, admin;
     Button logout;
 
     @Override
@@ -20,6 +20,16 @@ public class AdminPage extends AppCompatActivity {
         add_record = findViewById(R.id.student);
         check_record = findViewById(R.id.attend_admin);
         logout = findViewById(R.id.button_logout);
+        admin = findViewById(R.id.admin);
+
+        admin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent goToMain = new Intent(AdminPage.this, Admin.class);
+                startActivity(goToMain);
+            }
+        });
+
 
         add_record.setOnClickListener(new View.OnClickListener() {
             @Override

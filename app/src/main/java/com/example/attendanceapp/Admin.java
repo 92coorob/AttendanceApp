@@ -8,39 +8,37 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class Student extends AppCompatActivity {
+public class Admin extends AppCompatActivity {
 
-    TextView user;
+    TextView admin;
     Button update,back;
-    SharedPreferences username_pref;
-    String username;
+    SharedPreferences adminname_pref;
+    String adminname;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_student);
+        setContentView(R.layout.activity_admin);
 
-        user = findViewById(R.id.txt_user);
+        admin = findViewById(R.id.txt_user);
         update = findViewById(R.id.btn_update);
         back = findViewById(R.id.btn_back_admin);
 
-        username_pref = getSharedPreferences("students", MODE_PRIVATE);
-        username = username_pref.getString("username", "");
+        adminname_pref = getSharedPreferences("students", MODE_PRIVATE);
+        adminname = adminname_pref.getString("username", "");
 
-        user.setText(username);
-
-
+        admin.setText(adminname);
         update.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent goToMain = new Intent(Student.this, PopPassword.class);
+                Intent goToMain = new Intent(Admin.this, PopPassword.class);
                 startActivity(goToMain);
             }
         });
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent goToMain = new Intent(Student.this, MainActivity.class);
+                Intent goToMain = new Intent(Admin.this, AdminPage.class);
                 startActivity(goToMain);
             }
         });
