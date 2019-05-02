@@ -17,7 +17,7 @@ public class AdminPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_page);
 
-        add_record = findViewById(R.id.add_user);
+        add_record = findViewById(R.id.student);
         check_record = findViewById(R.id.attend_admin);
         logout = findViewById(R.id.button_logout);
 

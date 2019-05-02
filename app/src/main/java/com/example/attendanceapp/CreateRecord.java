@@ -39,7 +39,7 @@ public class CreateRecord extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_create_record);
 
         add_pass = findViewById(R.id.add_pass);
-        add_user = findViewById(R.id.add_user);
+        add_user = findViewById(R.id.student);
         status = findViewById(R.id.status);
         add = findViewById(R.id.add_btn);
         back = findViewById(R.id.back_btn);

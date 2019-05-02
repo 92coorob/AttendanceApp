@@ -17,7 +17,7 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity {
 
     GridLayout mainGrid;
-    private CardView Attendance;
+    private CardView Attendance,student;
     Button logout;
 
     @Override
@@ -28,13 +28,21 @@ public class MainActivity extends AppCompatActivity {
         mainGrid = (GridLayout) findViewById(R.id.mainGrid);
         Attendance = findViewById(R.id.Attendance);
         logout = findViewById(R.id.logout_main);
+        student = findViewById(R.id.student);
 
 
         Attendance.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent goToMain = new Intent(MainActivity.this, Attendance.class);
-                startActivity(goToMain);
+                Intent goToAttendance = new Intent(MainActivity.this, Attendance.class);
+                startActivity(goToAttendance);
+            }
+        });
+        student.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent goToStudent = new Intent(MainActivity.this, Student.class);
+                startActivity(goToStudent);
             }
         });
 
