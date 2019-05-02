@@ -21,7 +21,7 @@ public class AttendanceAdmin extends AppCompatActivity {
     private DatabaseReference usersRef, myRef;
     String name;
     String year;
-    String month;
+    String month,present;
     String day;
     String time;
     String[] temp,temp2;
@@ -57,11 +57,35 @@ public class AttendanceAdmin extends AppCompatActivity {
 
         usersRef = myRef.child("Date");
 
+        SharedPreferences prefs = getSharedPreferences("bgColour", MODE_PRIVATE);
+        present = prefs.getString("colour", "");
+        if(present.equals("7")){
+            week5.setBackgroundColor(getResources().getColor(R.color.green));
+        }
+        else if(present.equals("8")){
+
+            week8.setBackgroundColor(getResources().getColor(R.color.green));
+        }
+        else if(present.equals("9")){
+
+            week9.setBackgroundColor(getResources().getColor(R.color.green));
+        }
+        else if(present.equals("10")){
+
+            week10.setBackgroundColor(getResources().getColor(R.color.green));
+        }
+
+
+
         delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent goToMain = new Intent(AttendanceAdmin.this, PopPassword.class);
+                myRef.removeValue();
+                Intent goToMain = new Intent(AttendanceAdmin.this, AllRecords.class);
                 startActivity(goToMain);
+
+
+
             }
         });
 
@@ -84,10 +108,41 @@ public class AttendanceAdmin extends AppCompatActivity {
                 int intday = Integer.parseInt(day);
 
 
+                if(intmonth == 05 && intday == 02 && inthour >=17 && inthour <20){
 
-                if(intmonth == 4 && intday == 24 && inthour >=17 && inthour <20){
+                    SharedPreferences prefs = getSharedPreferences("bgColour", MODE_PRIVATE);
+                    SharedPreferences.Editor editor = prefs.edit();
+                    String colourSelected = "7";
+                    editor.putString("colour", colourSelected);
+                    editor.commit();
 
-                    week5.setBackgroundColor(getResources().getColor(R.color.green));
+                }
+                else if(intmonth == 05 && intday == 8 && inthour >=17 && inthour <20){
+
+                    SharedPreferences prefs = getSharedPreferences("bgColour", MODE_PRIVATE);
+                    SharedPreferences.Editor editor = prefs.edit();
+                    String colourSelected = "8";
+                    editor.putString("colour", colourSelected);
+                    editor.commit();
+
+                }
+
+                else if(intmonth == 05 && intday == 15 && inthour >=17 && inthour <20){
+
+                    SharedPreferences prefs = getSharedPreferences("bgColour", MODE_PRIVATE);
+                    SharedPreferences.Editor editor = prefs.edit();
+                    String colourSelected = "9";
+                    editor.putString("colour", colourSelected);
+                    editor.commit();
+
+                }
+                else if(intmonth == 05 && intday == 22 && inthour >=17 && inthour <20){
+
+                    SharedPreferences prefs = getSharedPreferences("bgColour", MODE_PRIVATE);
+                    SharedPreferences.Editor editor = prefs.edit();
+                    String colourSelected = "10";
+                    editor.putString("colour", colourSelected);
+                    editor.commit();
 
                 }
                 displayText.setText(username + " Last seen at: "+checkvalue);

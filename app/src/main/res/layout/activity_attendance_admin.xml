@@ -81,6 +81,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="12dp"
         android:text="Week 5"
+        android:background="@color/green"
         app:layout_constraintBottom_toTopOf="@+id/btn_week7"
         app:layout_constraintEnd_toStartOf="@+id/btn_week6"
         app:layout_constraintHorizontal_bias="0.614"
@@ -93,6 +94,7 @@
         android:layout_marginEnd="84dp"
         android:layout_marginBottom="12dp"
         android:text="Week 6"
+        android:background="@color/green"
         app:layout_constraintBottom_toTopOf="@+id/btn_week8"
         app:layout_constraintEnd_toEndOf="parent" />
 
