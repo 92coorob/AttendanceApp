@@ -90,61 +90,69 @@ public class Attendance extends AppCompatActivity {
         myRef.child("Date").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                String checkvalue = dataSnapshot.getValue().toString();
-                name = dataSnapshot.getRef().toString();
-                String[] parts = checkvalue.split("-");
-                temp = parts[2].split(" ");
-                year = parts[0];
-                month = parts[1];
-                day = temp[0];
-                time = temp[1];
-                temp2 = time.split(":");
-                hour = temp2[0];
-                minutes = temp2[1];
-                int inthour = Integer.parseInt(hour);
-                int intmonth = Integer.parseInt(month);
-                int intday = Integer.parseInt(day);
+                try{
+                    String checkvalue = dataSnapshot.getValue().toString();
+                    name = dataSnapshot.getRef().toString();
+                    String[] parts = checkvalue.split("-");
+                    temp = parts[2].split(" ");
+                    year = parts[0];
+                    month = parts[1];
+                    day = temp[0];
+                    time = temp[1];
+                    temp2 = time.split(":");
+                    hour = temp2[0];
+                    minutes = temp2[1];
+                    int inthour = Integer.parseInt(hour);
+                    int intmonth = Integer.parseInt(month);
+                    int intday = Integer.parseInt(day);
 
 
 
-                if(intmonth == 05 && intday == 02 && inthour >=17 && inthour <20){
+                    if(intmonth == 05 && intday == 02 && inthour >=17 && inthour <20){
 
-                    SharedPreferences prefs = getSharedPreferences("bgColour", MODE_PRIVATE);
-                    SharedPreferences.Editor editor = prefs.edit();
-                    String colourSelected = "7";
-                    editor.putString("colour", colourSelected);
-                    editor.commit();
+                        SharedPreferences prefs = getSharedPreferences("bgColour", MODE_PRIVATE);
+                        SharedPreferences.Editor editor = prefs.edit();
+                        String colourSelected = "7";
+                        editor.putString("colour", colourSelected);
+                        editor.commit();
+
+                    }
+                    else if(intmonth == 05 && intday == 8 && inthour >=17 && inthour <20){
+
+                        SharedPreferences prefs = getSharedPreferences("bgColour", MODE_PRIVATE);
+                        SharedPreferences.Editor editor = prefs.edit();
+                        String colourSelected = "8";
+                        editor.putString("colour", colourSelected);
+                        editor.commit();
+
+                    }
+
+                    else if(intmonth == 05 && intday == 15 && inthour >=17 && inthour <20){
+
+                        SharedPreferences prefs = getSharedPreferences("bgColour", MODE_PRIVATE);
+                        SharedPreferences.Editor editor = prefs.edit();
+                        String colourSelected = "9";
+                        editor.putString("colour", colourSelected);
+                        editor.commit();
+
+                    }
+                    else if(intmonth == 05 && intday == 22 && inthour >=17 && inthour <20){
+
+                        SharedPreferences prefs = getSharedPreferences("bgColour", MODE_PRIVATE);
+                        SharedPreferences.Editor editor = prefs.edit();
+                        String colourSelected = "10";
+                        editor.putString("colour", colourSelected);
+                        editor.commit();
+
+                    }
+                    displayText.setText(username + " Last seen at: "+checkvalue);
+                }
+
+                catch (Exception e){
+                    displayText.setText(username + " Last seen at: ");
 
                 }
-                else if(intmonth == 05 && intday == 8 && inthour >=17 && inthour <20){
 
-                    SharedPreferences prefs = getSharedPreferences("bgColour", MODE_PRIVATE);
-                    SharedPreferences.Editor editor = prefs.edit();
-                    String colourSelected = "8";
-                    editor.putString("colour", colourSelected);
-                    editor.commit();
-
-                }
-
-                else if(intmonth == 05 && intday == 15 && inthour >=17 && inthour <20){
-
-                    SharedPreferences prefs = getSharedPreferences("bgColour", MODE_PRIVATE);
-                    SharedPreferences.Editor editor = prefs.edit();
-                    String colourSelected = "9";
-                    editor.putString("colour", colourSelected);
-                    editor.commit();
-
-                }
-                else if(intmonth == 05 && intday == 22 && inthour >=17 && inthour <20){
-
-                    SharedPreferences prefs = getSharedPreferences("bgColour", MODE_PRIVATE);
-                    SharedPreferences.Editor editor = prefs.edit();
-                    String colourSelected = "10";
-                    editor.putString("colour", colourSelected);
-                    editor.commit();
-
-                }
-                displayText.setText(username + " Last seen at: "+checkvalue);
 
 
 

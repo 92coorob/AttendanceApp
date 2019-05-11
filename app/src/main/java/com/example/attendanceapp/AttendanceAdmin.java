@@ -30,7 +30,7 @@ public class AttendanceAdmin extends AppCompatActivity {
     private TextView displayText;
     SharedPreferences username_pref;
     String username;
-
+    Button pw_reset;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,13 +54,13 @@ public class AttendanceAdmin extends AppCompatActivity {
         week9 = findViewById(R.id.btn_week9);
         week10 = findViewById(R.id.btn_week10);
         delete = findViewById(R.id.btn_delete);
-
+        pw_reset = findViewById(R.id.reset_pw);
         usersRef = myRef.child("Date");
 
         SharedPreferences prefs = getSharedPreferences("bgColour", MODE_PRIVATE);
         present = prefs.getString("colour", "");
         if(present.equals("7")){
-            week5.setBackgroundColor(getResources().getColor(R.color.green));
+            week7.setBackgroundColor(getResources().getColor(R.color.green));
         }
         else if(present.equals("8")){
 
@@ -89,9 +89,17 @@ public class AttendanceAdmin extends AppCompatActivity {
             }
         });
 
+        pw_reset.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
         myRef.child("Date").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                try{
                 String checkvalue = dataSnapshot.getValue().toString();
                 name = dataSnapshot.getRef().toString();
                 String[] parts = checkvalue.split("-");
@@ -147,6 +155,12 @@ public class AttendanceAdmin extends AppCompatActivity {
                 }
                 displayText.setText(username + " Last seen at: "+checkvalue);
 
+                }
+
+                catch (Exception e){
+                    displayText.setText(username + " Last seen at: ");
+
+                }
 
 
 

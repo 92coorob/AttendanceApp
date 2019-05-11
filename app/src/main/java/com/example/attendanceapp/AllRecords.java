@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.example.attendanceapp.Adaptors.UserListAdapter;
 import com.example.attendanceapp.Model.UserListModel;
@@ -41,18 +42,23 @@ public class AllRecords extends AppCompatActivity {
         userData.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for (final DataSnapshot restSnapshot : dataSnapshot.getChildren()) {
+                try {
+                    for (final DataSnapshot restSnapshot : dataSnapshot.getChildren()) {
 
-                    //set variables
-                    final String status = restSnapshot.child("status").getValue().toString();
+                        //set variables
+                        final String status = restSnapshot.child("status").getValue().toString();
 
-                    if (status.equals("student")){
-                        final String student_name = restSnapshot.getKey();
-                        final String last_seen = restSnapshot.child("Date").getValue().toString();
-                        userList.add(new UserListModel(student_name, last_seen));
+                        if (status.equals("student")) {
+                            final String student_name = restSnapshot.getKey();
+                            final String last_seen = restSnapshot.child("Date").getValue().toString();
+                            userList.add(new UserListModel(student_name, last_seen));
+                        }
                     }
+                    userAdapter.notifyDataSetChanged();
                 }
-                userAdapter.notifyDataSetChanged();
+                catch (Exception e){
+                    Toast.makeText(AllRecords.this, "Error loading data", Toast.LENGTH_SHORT).show();
+                }
             }
 
             @Override

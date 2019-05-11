@@ -48,20 +48,20 @@ public class PopPassword extends AppCompatActivity {
         newpwd =findViewById(R.id.new_pwd);
         confpwd =findViewById(R.id.conf_pwd);
         confirm =findViewById(R.id.btn_confirm);
-        close = findViewById(R.id.btn_close);
+        //close = findViewById(R.id.btn_close);
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         username_pref = getSharedPreferences("students", MODE_PRIVATE);
         username = username_pref.getString("username", "");
         myRef = database.getReference("users").child(username);
-
+/*
         close.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent goToAttendance = new Intent(PopPassword.this, Student.class);
                 startActivity(goToAttendance);
             }
-        });
+        });*/
 
         confirm.setOnClickListener(new View.OnClickListener() {
             @Override
