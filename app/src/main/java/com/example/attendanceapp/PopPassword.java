@@ -85,7 +85,7 @@ public class PopPassword extends AppCompatActivity {
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
-                        if (dec_password.equals(oldpass) && confpass.equals(newpass))   {
+                        if (dec_password.equals(oldpass) && confpass.equals(newpass) && !confpass.isEmpty())   {
                             myRef.child("password").setValue(enc_password);
                             oldpwd.setText("");
                             newpwd.setText("");

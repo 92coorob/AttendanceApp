@@ -1,11 +1,16 @@
 package com.example.attendanceapp.Model;
 
+import android.support.constraint.ConstraintLayout;
+
 import java.io.Serializable;
 
 public class UserListModel  implements Serializable {
 
     private String name;
     private String date;
+
+
+
 
     public String getName() {
         return name;
@@ -19,9 +24,7 @@ public class UserListModel  implements Serializable {
         return date;
     }
 
-    public void setLocation(String location) {
-        this.date = location;
-    }
+
 
     public UserListModel(String name, String date) {
         this.name = name;

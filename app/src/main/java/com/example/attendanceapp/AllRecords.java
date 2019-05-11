@@ -1,9 +1,11 @@
 package com.example.attendanceapp;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -22,10 +24,12 @@ import java.util.ArrayList;
 
 public class AllRecords extends AppCompatActivity {
 
-    private ListView listViewRestaurants;
+    private ListView listViewStudents;
     private ArrayList<UserListModel> userList;
     private ArrayAdapter<UserListModel> userAdapter;
     DatabaseReference userData;
+    private static final String TAG = "AllRecords";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,13 +39,20 @@ public class AllRecords extends AppCompatActivity {
         //adapter
         userList = new ArrayList<>();
         userAdapter = new UserListAdapter(this, userList);
-        this.listViewRestaurants = findViewById( R.id.records_list );
-        this.listViewRestaurants.setAdapter(userAdapter);
+        this.listViewStudents = findViewById(R.id.records_list);
+        this.listViewStudents.setAdapter(userAdapter);
+
+        listViewStudents.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
+        listViewStudents.setItemsCanFocus(false);
+
         userData = FirebaseDatabase.getInstance().getReference("users");
 
         userData.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (!userList.isEmpty()) {
+                    userList.removeAll(userList);
+                }
                 try {
                     for (final DataSnapshot restSnapshot : dataSnapshot.getChildren()) {
 
@@ -55,8 +66,7 @@ public class AllRecords extends AppCompatActivity {
                         }
                     }
                     userAdapter.notifyDataSetChanged();
-                }
-                catch (Exception e){
+                } catch (Exception e) {
                     Toast.makeText(AllRecords.this, "Error loading data", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -67,7 +77,11 @@ public class AllRecords extends AppCompatActivity {
             }
         });
 
-        this.listViewRestaurants.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+
+
+
+        this.listViewStudents.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 UserListModel rest = userList.get(position);
@@ -79,5 +93,11 @@ public class AllRecords extends AppCompatActivity {
         });
 
 
+
     }
+
+
+
+
+
 }

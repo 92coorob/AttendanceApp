@@ -103,15 +103,14 @@ public class Student extends AppCompatActivity {
             usersRef.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    if(dataSnapshot.getValue() == null){
+                        profPic.setImageResource(R.drawable.user);
+                    }
+                    else {
+                        String checkvalue = dataSnapshot.getValue().toString();
 
-                if(dataSnapshot.getValue() == null){
-                    profPic.setImageResource(R.drawable.user);
-                }
-                else {
-                    String checkvalue = dataSnapshot.getValue().toString();
-
-                    Glide.with(Student.this).load(checkvalue).into(profPic);
-                }
+                        Glide.with(Student.this).load(checkvalue).into(profPic);
+                    }
                 }
 
 
@@ -169,6 +168,7 @@ public class Student extends AppCompatActivity {
                         map.put("imageURL", mUri);
                         myRef.updateChildren(map);
                         pd.dismiss();
+                        onResume();
                     }
                     else {
                         Toast.makeText(Student.this,"Failed", Toast.LENGTH_SHORT).show();
@@ -203,5 +203,39 @@ public class Student extends AppCompatActivity {
             }
         }
 
+    }
+
+    @Override
+    protected void onResume() {
+        try {
+            usersRef = myRef.child("imageURL");
+            usersRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    if(dataSnapshot.getValue() == null){
+                        profPic.setImageResource(R.drawable.user);
+                    }
+                    else {
+                        String checkvalue = dataSnapshot.getValue().toString();
+
+                        Glide.with(Student.this).load(checkvalue).into(profPic);
+                    }
+                }
+
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+
+            });
+
+
+        }
+        catch (Exception e){
+            profPic.setImageResource(R.drawable.user);
+
+        }
+        super.onResume();
     }
 }

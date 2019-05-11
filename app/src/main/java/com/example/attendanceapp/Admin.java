@@ -31,8 +31,8 @@ public class Admin extends AppCompatActivity {
         update.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent goToMain = new Intent(Admin.this, PopPassword.class);
-                startActivity(goToMain);
+                Intent changepass = new Intent(Admin.this, PopPassword.class);
+                startActivity(changepass);
             }
         });
         back.setOnClickListener(new View.OnClickListener() {
